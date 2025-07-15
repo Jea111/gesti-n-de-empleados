@@ -1,84 +1,134 @@
-{% extends 'layout/navbar.html' %} {% block content %}
-<h2>Editar Empleado</h2>
+{% extends 'layout/navbar.html' %}
 
-<form method="post">
-  {% csrf_token %}
+{% block content %}
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">
+            <i class="fas fa-user-edit me-2"></i>Editar Empleado
+          </h2>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+              <label class="form-label fw-bold">Nombre Completo:</label>
+              <input
+                type="text"
+                name="Nombre_completo"
+                value="{{ empleado.Nombre_completo }}"
+                class="form-control"
+                required
+              />
+            </div>
 
-  <div>
-    <label>Nombre Completo:</label>
-    <input
-      type="text"
-      name="Nombre_completo"
-      value="{{ empleado.Nombre_completo }}"
-      required
-    />
+            <div class="mb-3">
+              <label class="form-label fw-bold">Email Corporativo:</label>
+              <input
+                type="email"
+                name="Email_corporativo"
+                value="{{ empleado.Email_corporativo }}"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-bold">Teléfono:</label>
+              <input
+                type="text"
+                name="Teléfono"
+                value="{{ empleado.Teléfono }}"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Cargo:</label>
+                  <input 
+                    type="text" 
+                    name="Cargo" 
+                    value="{{ empleado.Cargo }}" 
+                    class="form-control"
+                    required 
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Departamento:</label>
+                  <input
+                    type="text"
+                    name="Departamento"
+                    value="{{ empleado.Departamento }}"
+                    class="form-control"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Fecha de Contratación:</label>
+                  <input
+                    type="date"
+                    name="Fecha_de_contratación"
+                    value="{{ empleado.Fecha_de_contratación|date:'Y-m-d' }}"
+                    class="form-control"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Salario:</label>
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input
+                      type="number"
+                      name="Salario"
+                      value="{{ empleado.Salario }}"
+                      step="0.01"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold">Estado:</label>
+              <select name="Estado" class="form-select" required>
+                <option value="Activo" {% if empleado.Estado == 'Activo' %}selected{% endif %}>
+                  Activo
+                </option>
+                <option value="Inactivo" {% if empleado.Estado == 'Inactivo' %}selected{% endif %}>
+                  Inactivo
+                </option>
+              </select>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a href="{% url 'empleados' %}" class="btn btn-secondary me-md-2">
+                <i class="fas fa-times me-1"></i>Cancelar
+              </a>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save me-1"></i>Actualizar Empleado
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <label>Email Corporativo:</label>
-    <input
-      type="email"
-      name="Email_corporativo"
-      value="{{ empleado.Email_corporativo }}"
-      required
-    />
-  </div>
-
-  <div>
-    <label>Teléfono:</label>
-    <input
-      type="text"
-      name="Teléfono"
-      value="{{ empleado.Teléfono }}"
-      required
-    />
-  </div>
-
-  <div>
-    <label>Cargo:</label>
-    <input type="text" name="Cargo" value="{{ empleado.Cargo }}" required />
-  </div>
-
-  <div>
-    <label>Departamento:</label>
-    <input
-      type="text"
-      name="Departamento"
-      value="{{ empleado.Departamento }}"
-      required
-    />
-  </div>
-
-  <div>
-    <label>Fecha de Contratación:</label>
-    <input
-      type="date"
-      name="Fecha_de_contratación"
-      value="{{ empleado.Fecha_de_contratación|date:'Y-m-d' }}"
-      required
-    />
-  </div>
-
-  <div>
-    <label>Salario:</label>
-    <input
-      type="number"
-      name="Salario"
-      value="{{ empleado.Salario }}"
-      step="0.01"
-      required
-    />
-  </div>
-
-  <div>
-    <label>Estado:</label>
-    <select name="Estado" required>
-      <option value="Activo">True</option>
-      <option value="Inactivo">False</option>
-    </select>
-  </div>
-
-  <button type="submit">Actualizar Empleado</button>
-  <a href="{% url 'empleados' %}">Cancelar</a>
-</form>
+</div>
 {% endblock %}
