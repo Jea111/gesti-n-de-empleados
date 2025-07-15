@@ -30,6 +30,12 @@ def ver_empleado(request):
     return render(request,'list_emp.html',{
         'emp':emp
     })
+
+def ver_empleado_detail(request, id):
+    emp = Employee.objects.filter(id=id)
+    return render(request,'list_emp.html',{
+        'emp':emp
+    })        
         
     
 def eliminar(request,id):
