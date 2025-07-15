@@ -1,0 +1,84 @@
+{% extends 'layout/navbar.html' %} {% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-4 text-center">Lista de Empleados</h2>
+
+      {% for e in emp %}
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-8">
+              <h5 class="card-title text-primary">
+                <i class="fas fa-user me-2"></i>{{e.Nombre_completo}}
+              </h5>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="mb-2">
+                    <strong><i class="fas fa-briefcase me-2"></i>Cargo:</strong>
+                    <span class="badge bg-secondary">{{e.Cargo}}</span>
+                  </p>
+                  <p class="mb-2">
+                    <strong><i class="fas fa-phone me-2"></i>Teléfono:</strong>
+                    <a href="tel:{{e.Teléfono}}" class="text-decoration-none"
+                      >{{e.Teléfono}}</a
+                    >
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p class="mb-2">
+                    <strong><i class="fas fa-envelope me-2"></i>Email:</strong>
+                    <a
+                      href="mailto:{{e.Email_corporativo}}"
+                      class="text-decoration-none"
+                      >{{e.Email_corporativo}}</a
+                    >
+                  </p>
+                  <p class="mb-2">
+                    <strong
+                      ><i class="fas fa-dollar-sign me-2"></i>Salario:</strong
+                    >
+                    <span class="text-success fw-bold">${{e.Salario}}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 d-flex align-items-center justify-content-end">
+              <div class="btn-group" role="group">
+                <a
+                  href="{% url 'editar' e.id %}"
+                  class="btn btn-outline-primary btn-sm"
+                >
+                  <i class="fas fa-edit me-1"></i>Editar
+                </a>
+
+                <form
+                  method="post"
+                  action="{% url 'eliminar' e.id %}"
+                  style="display: inline"
+                >
+                  {% csrf_token %}
+                  <button
+                    type="submit"
+                    class="btn btn-outline-danger btn-sm"
+                    onclick="return confirm('¿Estás seguro de eliminar este empleado?')"
+                  >
+                    <i class="fas fa-trash me-1"></i>Eliminar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% if not emp %}
+      <div class="alert alert-info text-center" role="alert">
+        <i class="fas fa-info-circle me-2"></i>
+        No hay empleados registrados en el sistema.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

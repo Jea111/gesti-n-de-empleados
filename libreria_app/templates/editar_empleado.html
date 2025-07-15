@@ -1,0 +1,84 @@
+{% extends 'layout/navbar.html' %} {% block content %}
+<h2>Editar Empleado</h2>
+
+<form method="post">
+  {% csrf_token %}
+
+  <div>
+    <label>Nombre Completo:</label>
+    <input
+      type="text"
+      name="Nombre_completo"
+      value="{{ empleado.Nombre_completo }}"
+      required
+    />
+  </div>
+
+  <div>
+    <label>Email Corporativo:</label>
+    <input
+      type="email"
+      name="Email_corporativo"
+      value="{{ empleado.Email_corporativo }}"
+      required
+    />
+  </div>
+
+  <div>
+    <label>Teléfono:</label>
+    <input
+      type="text"
+      name="Teléfono"
+      value="{{ empleado.Teléfono }}"
+      required
+    />
+  </div>
+
+  <div>
+    <label>Cargo:</label>
+    <input type="text" name="Cargo" value="{{ empleado.Cargo }}" required />
+  </div>
+
+  <div>
+    <label>Departamento:</label>
+    <input
+      type="text"
+      name="Departamento"
+      value="{{ empleado.Departamento }}"
+      required
+    />
+  </div>
+
+  <div>
+    <label>Fecha de Contratación:</label>
+    <input
+      type="date"
+      name="Fecha_de_contratación"
+      value="{{ empleado.Fecha_de_contratación|date:'Y-m-d' }}"
+      required
+    />
+  </div>
+
+  <div>
+    <label>Salario:</label>
+    <input
+      type="number"
+      name="Salario"
+      value="{{ empleado.Salario }}"
+      step="0.01"
+      required
+    />
+  </div>
+
+  <div>
+    <label>Estado:</label>
+    <select name="Estado" required>
+      <option value="Activo">True</option>
+      <option value="Inactivo">False</option>
+    </select>
+  </div>
+
+  <button type="submit">Actualizar Empleado</button>
+  <a href="{% url 'empleados' %}">Cancelar</a>
+</form>
+{% endblock %}

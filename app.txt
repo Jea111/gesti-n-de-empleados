@@ -1,0 +1,30 @@
+Proyecto: Sistema de Gestión de Empleados para "TechCorp"
+TechCorp es una empresa de desarrollo de software que necesita un sistema simple para gestionar información básica de sus empleados.
+Requerimientos del sistema:
+Funcionalidades principales:
+
+Registro de empleados - Crear perfiles de nuevos empleados
+Lista de empleados - Ver todos los empleados registrados
+Detalle de empleado - Ver información completa de un empleado específico
+Editar empleado - Actualizar información existente
+Eliminar empleado - Remover empleados del sistema
+
+Campos para el modelo Employee:
+
+Nombre completo
+Email corporativo
+Teléfono
+Posición/Cargo
+Departamento (Desarrollo, Marketing, Ventas, RRHH)
+Fecha de contratación
+Salario
+Estado (Activo/Inactivo)
+
+Características técnicas a implementar:
+
+Modelo Django con validaciones básicas
+Vistas basadas en funciones o clases
+Templates con Bootstrap para que se vea profesional
+URLs organizadas
+Formularios Django para crear/editar
+Sistema de mensajes para confirmaciones
