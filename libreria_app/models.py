@@ -24,3 +24,14 @@ class Employee(models.Model):
         
         
         
+        
+class LoginAmin(models.Model):
+    username = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return f'Admin: {self.username} '
+    
+    class Meta:
+        verbose_name = 'Administradores'
+        verbose_name_plural = 'Administradores'

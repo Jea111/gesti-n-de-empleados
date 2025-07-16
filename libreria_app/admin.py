@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee
+from .models import Employee,LoginAmin
 
 class EmployeeAdmin(admin.ModelAdmin):
     # Controla qué campos se muestran en el FORMULARIO de edición/creación
@@ -20,3 +20,10 @@ admin.site.register(Employee, EmployeeAdmin)
 
     
     
+class LoginAdmin(admin.ModelAdmin):
+    """Login de administradores para la dashboard"""
+    fields = ['username','password']
+    list_display = ['username','password']
+    list_filter = ['username','password']
+    search_fields = ['username']
+admin.site.register(LoginAmin,LoginAdmin)

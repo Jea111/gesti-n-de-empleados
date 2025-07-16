@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from . models import Employee
 from django.contrib import messages
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login,authenticate
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 def registro(request):
@@ -120,3 +122,20 @@ def dasboard(request):
         'emp':emp
     })
 
+
+
+
+def login_admin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+            
+            return redirect('dasboard')
+        else:
+            error_message='Credenciales incorrectas'
+            
+    return render(request,'login_admin.html')
+        
