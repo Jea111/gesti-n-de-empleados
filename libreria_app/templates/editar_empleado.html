@@ -62,14 +62,19 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label class="form-label fw-bold">Departamento:</label>
-                  <input
-                    type="text"
-                    name="Departamento"
-                    value="{{ empleado.Departamento }}"
-                    class="form-control"
-                    required
-                  />
+                   <select
+                        class="form-select"
+                        id="Departamento"
+                        name="Departamento"
+                        required
+                      >
+                        <option value="{{ empleado.Departamento }}">Seleccionar Departamento</option>
+                        <option value="SISTEMAS">SISTEMAS</option>
+                        <option value="RRHH">RECURSOS HUMANOS</option>
+                        <option value="DISEÑO">DISEÑO</option>
+                        <option value="FINANZAS">FINANZAS</option>
+                        <option value="PROD. MANAGE">PROD. MANAGE</option>
+                      </select>
                 </div>
               </div>
             </div>
